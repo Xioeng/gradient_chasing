@@ -1,9 +1,10 @@
+import surveyor_library.surveyor_helper as hlp
+from surveyor_library import Surveyor
+from gradient_chasing_utils import utils_gp_gradient
+
 import sys
 import time
 import pandas as pd
-import surveyor_lib.surveyor_library.surveyor_helper as hlp
-from surveyor_lib.surveyor_library import Surveyor
-from gradient_chasing_utils import utils_gp_gradient
 import numpy as np
 from geopy.distance import geodesic
 from sklearn.gaussian_process.kernels import DotProduct, Matern

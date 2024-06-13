@@ -1,3 +1,3 @@
-[submodule "/lclhome/jfuen099/Documents/Python/gradient_chasing/surveyor_lib"]
-	path = /lclhome/jfuen099/Documents/Python/gradient_chasing/surveyor_lib
+[submodule "/lclhome/jfuen099/Documents/Python/gradient_chasing/surveyor_library"]
+	path = /lclhome/jfuen099/Documents/Python/gradient_chasing/surveyor_library
 	url = https://github.com/Xioeng/surveyor_asv.git
