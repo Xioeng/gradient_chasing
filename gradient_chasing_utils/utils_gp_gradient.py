@@ -111,7 +111,7 @@ class WaterPhenomenonGP:
 
 def plot_env_and_path(environment, path, extent, delta=0.0004,
                     plot_args={'marker': 'x', 'color': 'black'},
-                    contourf_args={'cmap': 'jet', 'alpha': 0.5}):
+                    contourf_args={'cmap': 'jet', 'alpha': 0.5, 'levels' : 15}):
     """
     Plots the interpolated environment data and the path on a satellite image.
 

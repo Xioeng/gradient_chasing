@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.gaussian_process.kernels import DotProduct, Matern
+from sklearn.gaussian_process.kernels import DotProduct, Matern, RBF
 import pickle
 from utils import Normalizer, sort_coordinates
 from utils_gp_gradient import WaterPhenomenonGP, plot_env_and_path
@@ -33,7 +33,7 @@ def fit_and_predict(water_feature, X, y, min_coords, max_coords, iterations=20, 
         else:
             plot_env = lambda x: water_feature._gaussian_process.predict(water_feature._normalizer.forward(x))
 
-        plot_env_and_path(plot_env, X, (*min_coords, *max_coords))
+        plot_env_and_path(plot_env, X, (*min_coords, *max_coords), 0.0002)
         plt.pause(0.5)
 
 
@@ -44,10 +44,11 @@ polygon_coordinates = np.array([[25.7581072, -80.3738942],
                                 [25.7583659, -80.3734494]])
 
 # Load the temperature solution
-solution = load_solution_from_pkl('temperature_test.pkl')[0][-1]
+solution = load_solution_from_pkl('temperature_test.pkl')
 
 # Define the kernel
 kernel = 10 * Matern(nu=0.5, length_scale_bounds=(1e-2, 1e5)) + 1e-2 * DotProduct() ** 1
+kernel = Matern()
 
 # Initialize the Gaussian Process
 water_feature, min_coords, max_coords = initialize_gp(polygon_coordinates, kernel)
@@ -71,6 +72,6 @@ initial_values = np.array([environment(x) for x in initial_points])
 
 # Fit the model and predict the next points
 if __name__ == '__main__':
-    fit_and_predict(water_feature, initial_points, initial_values, min_coords, max_coords, iterations= 40, environment = environment, plot_env_mode = 'same')
+    fit_and_predict(water_feature, initial_points, initial_values, min_coords, max_coords, iterations= 40, environment = environment, plot_env_mode = 'gp')
     plt.show()
     plt.pause(0.25)

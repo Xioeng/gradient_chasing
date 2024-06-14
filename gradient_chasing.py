@@ -1,5 +1,5 @@
 import surveyor_library.surveyor_helper as hlp
-from surveyor_library import Surveyor
+import surveyor_library
 from gradient_chasing_utils import utils_gp_gradient
 
 import sys
@@ -113,7 +113,7 @@ def main(filename, erp_filename, mission_postfix= ""):
     initial_waypoints = hlp.read_csv_into_tuples(filename)
     
     erp = hlp.read_csv_into_tuples(erp_filename)
-    boat = Surveyor()
+    boat = surveyor_library.Surveyor()
     
     print(f'{len(initial_waypoints)} initial waypoints')
 
